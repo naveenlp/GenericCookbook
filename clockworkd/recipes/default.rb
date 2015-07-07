@@ -5,11 +5,6 @@
 
 node[:deploy].each do |application, deploy|
 
-  if !(node[:opsworks][:instance][:hostname].start_with?("joyrideapi") )
-    Chef::Log.debug("Skipping clockworkd::default on the instance #{node[:opsworks][:instance][:hostname]}")
-    next
-  end 
-
   template "#{node[:monit][:conf_dir]}/clockworkd_#{application}.monitrc" do
     owner 'root'
     group 'root'
